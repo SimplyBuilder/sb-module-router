@@ -1,0 +1,87 @@
+{
+  "name": "@jamilservices/sb-module-router",
+  "package": "@jamilservices/sb-module-router",
+  "description": "Simply Builder Module - Create, Manage, and Destroy Routes",
+  "version": "1.0.0",
+  "module": "lib/main.min.js",
+  "type": "module",
+  "types": "./types.d.ts",
+  "files": [
+    "AUTHORS",
+    "lib",
+    "types.d.ts"
+  ],
+  "imports": {
+    "#sb-module-router": "./lib/main.min.js"
+  },
+  "exports": {
+    "default": "./lib/main.min.js"
+  },
+  "scripts": {
+    "clean": "rm -rf lib && rm -rf build",
+    "build": "pnpm run clean && rollup -c",
+    "see-pack": "tar tvf $(npm pack)",
+    "tests": "node --test-reporter=spec --test test/setup.js test/build.js",
+    "test": "pnpm run build && pnpm run tests",
+    "prepublish": "pnpm test",
+    "publish:dist": "pnpm publish --no-git-checks --access public",
+    "publish:test": "pnpm publish --dry-run --no-git-checks",
+    "version:patch": "pnpx changelogen@latest --bump --patch",
+    "version:minor": "pnpx changelogen@latest --bump --minor",
+    "version:major": "pnpx changelogen@latest --bump --major"
+  },
+  "homepage": "https://simplybuilder.github.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimplyBuilder/sb-module-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SimplyBuilder/sb-module-router/issues"
+  },
+  "author": "Jamil Serviços <jamilservicos@gmail.com> (https://github.com/jamilservicos)",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/jamilservicos"
+    },
+    {
+      "type": "patreon",
+      "url": "https://patreon.com/jamilservices"
+    }
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.10.x"
+  },
+  "os": [
+    "!win32"
+  ],
+  "keywords": [
+    "jamilservicos",
+    "jamilservices",
+    "node",
+    "nodejs",
+    "node.js",
+    "javascript",
+    "simply-builder",
+    "simplybuilder",
+    "simply",
+    "builder",
+    "module",
+    "router",
+    "routers",
+    "spa",
+    "single",
+    "page",
+    "application"
+  ],
+  "devDependencies": {
+    "@jamilservices/sb-module-notify": "^1.0.2",
+    "@rollup/plugin-replace": "latest",
+    "@rollup/plugin-terser": "latest",
+    "fast-glob": "latest",
+    "jsdom": "^24.0.0",
+    "rollup": "latest"
+  },
+  "packageManager": "pnpm@8.15.6+sha256.01c01eeb990e379b31ef19c03e9d06a14afa5250b82e81303f88721c99ff2e6f"
+}
