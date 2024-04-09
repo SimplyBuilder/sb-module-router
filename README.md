@@ -187,7 +187,7 @@ router.state();
 
 ### Contribution Guidelines
 
-Interested in contributing? We welcome your contributions to enhance the backend capabilities of `@jamilservices/sb-module-router`.      
+Interested in contributing? We welcome your contributions to enhance the frontend capabilities of `@jamilservices/sb-module-router`.     
 Please check our [Contribution Guidelines](https://github.com/SimplyBuilder/sb-module-router/tree/main/CONTRIBUTING.md) for more details.
 
 ### License
