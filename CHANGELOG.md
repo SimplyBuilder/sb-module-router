@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.2
+
+[compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.0.1...v1.0.2)
+
+### 💅 Refactors
+
+- Improve target assignment in routerHandle.js ([7d83abd](https://github.com/SimplyBuilder/sb-module-router/commit/7d83abd))
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v1.0.1
 
 [compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/empty...v1.0.1)
