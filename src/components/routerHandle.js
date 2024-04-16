@@ -202,6 +202,9 @@ const storeTypeEvents = {
             target = internalStore.home;
             window.history.pushState({}, null, mountHashPath(target));
         }
+        if(typeof message?.id === "string" && typeof target === "undefined") {
+            target = message.id;
+        }
         if(message?.title?.toString()) {
             window.document.title = message.title.toString();
         } else window.document.title = internalStore.title;
