@@ -32,6 +32,7 @@ const routerEvents = NotifyModule.instance("router");
  */
 const internalStore = {
     home: '/',
+    root: '/',
     prefix: undefined,
     title: "Home",
     last: undefined
@@ -138,11 +139,11 @@ const addPrefix = (target) => {
 const mountHashPath = (target) => {
     const path = addPrefix(target);
     if(isValidString(path)) {
-        if(path === "404") return "/#/404";
-        return "/#/"+ removeFirstSlash(path);
+        if(path === "404") return internalStore.root + "#/404";
+        return internalStore.root +"#/"+ removeFirstSlash(path);
     } else {
         const home = getHomePath();
-        return "/#"+ home;
+        return internalStore.root +"#"+ home;
     }
 };
 /**
@@ -251,10 +252,11 @@ const syncRouterHash = (data = {}) => {
  * @param {object} [data={}] - The settings data.
  */
 const routerSettings = (data = {}) => {
-    const {home, prefix, title} = data;
+    const {home, prefix, title, subpath} = data;
     if(isValidString(home)) internalStore.home = home.trim();
     if(isValidString(prefix)) internalStore.prefix = prefix.trim();
     if(isValidString(title)) internalStore.title = title.trim();
+    if(subpath) internalStore.root = "./";
 };
 
 /**

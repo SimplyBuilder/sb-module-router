@@ -143,6 +143,7 @@ router.state();
 - **Description**: Creates/retrieves and returns a new/existing router instance.
 - **Object propertie**:
     - `home`: Optional - Default route for the application. Defaults to `/` if not specified.    
+    - `subpath`: Optional - If set to true the root path is considered as "./", default is "/".
     - `prefix`: Optional - A prefix to include between the route and the hash.
 
 
