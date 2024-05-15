@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.3
+
+[compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.0.2...v1.0.3)
+
+### 🚀 Enhancements
+
+- **routerHandle:** Add subpath option to routerSettings ([d54b101](https://github.com/SimplyBuilder/sb-module-router/commit/d54b101))
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v1.0.2
 
 [compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.0.1...v1.0.2)
