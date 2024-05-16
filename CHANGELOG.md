@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.4
+
+[compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.0.3...v1.0.4)
+
+### 💅 Refactors
+
+- **types:** Add subpath option to RouterInitializationData ([77805a0](https://github.com/SimplyBuilder/sb-module-router/commit/77805a0))
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v1.0.3
 
 [compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.0.2...v1.0.3)
