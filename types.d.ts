@@ -79,6 +79,7 @@ declare class SimplyBuilderRouterInterface {
  */
 interface RouterInitializationData {
     home?: string;
+    subpath?: boolean;
     prefix?: string;
 }
 
