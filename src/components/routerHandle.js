@@ -72,6 +72,21 @@ const removeFirstSlash = (path) => {
  * @type {RegExp|null}
  */
 const removePrefixRegex = internalStore.prefix ? new RegExp(`^${internalStore.prefix}/?`) : null;
+
+/**
+ * Removes escaped_fragment from a given path.
+ *
+ * @private
+ * @function removeEscapedFragment
+ * @memberof module:RouterHandle
+ * @param {string} path - The path to process.
+ * @returns {string} - The path without escaped_fragment.
+ */
+const removeEscapedFragment = (path) => {
+    if(path.startsWith("!")) return path.replace("!", "");
+    return path;
+};
+
 /**
  * Removes an internally stored prefix from a given path.
  *
@@ -83,8 +98,9 @@ const removePrefixRegex = internalStore.prefix ? new RegExp(`^${internalStore.pr
  */
 const removePrefix = (path) => {
     const {prefix} = internalStore;
-    if(isValidString(path)) {
-        let cleanPath = removeFirstSlash(path);
+    const pathWithoutEscapedFragment= removeEscapedFragment(path);
+    if(isValidString(pathWithoutEscapedFragment)) {
+        let cleanPath = removeFirstSlash(pathWithoutEscapedFragment);
         if(prefix && removePrefixRegex) cleanPath = cleanPath.replace(removePrefixRegex, "");
         if (isValidString(cleanPath)) return cleanPath.toString();
     }
