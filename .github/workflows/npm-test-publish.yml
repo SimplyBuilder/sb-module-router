@@ -5,8 +5,8 @@ name: Test Node.js Package
 
 on:
   workflow_dispatch:
-    branches:
-      - main
+#    branches:
+#      - main
 
 env:
   CARGO_TERM_COLOR: always
@@ -31,7 +31,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8.15.4
+          version: 9.7.0
           run_install: false
       - name: Install dependencies
         run: pnpm install
