@@ -33,7 +33,8 @@ describe('RouterHandler exported functionality tests', () => {
     });
     it('hashChange should process hash changes correctly', () => {
         RouterHandler.hashChange({
-            current: (path) => {
+            current: (data) => {
+                const {path} = data;
                 strictEqual(path, 'home', 'hashChange should correctly process the hash to path');
             }
         });
