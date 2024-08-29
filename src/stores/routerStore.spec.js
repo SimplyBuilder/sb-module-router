@@ -23,25 +23,25 @@ describe('RouterStore functionality tests',() => {
         strictEqual(result, true, 'Route should be registered successfully');
     });
     it('should update current route correctly', () => {
-        RouterStore.current('testRoute');
+        RouterStore.current({path: 'testRoute'});
         const state = RouterStore.state();
         strictEqual(state.current, 'testRoute', 'Current route should be updated to testRoute');
     });
     it('should handle home redirection correctly', () => {
-        const result = RouterStore.current('home');
+        const result = RouterStore.current({path: 'home'});
         const state = RouterStore.state();
         strictEqual(state.current, 'home', 'Should redirect to home correctly');
     });
     it('should handle 404 not found route correctly', () => {
         RouterStore.register({ id: '404', title: 'Not Found' });
-        const result = RouterStore.current('nonExistentRoute');
+        const result = RouterStore.current({path: 'nonExistentRoute'});
         const state = RouterStore.state();
         strictEqual(state.current, '404', 'Should update to 404 not found route for non-existent routes');
     });
     it('should unregister a route successfully', () => {
         const unregisterResult = RouterStore.unregister('testRoute');
         strictEqual(unregisterResult, true, 'Route should be unregistered successfully');
-        const updateResult = RouterStore.current('testRoute');
+        const updateResult = RouterStore.current({path: 'testRoute'});
         const state = RouterStore.state();
         notStrictEqual(state.current, 'testRoute', 'Unregistered route should not be set as current');
     });
