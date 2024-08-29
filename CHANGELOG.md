@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v1.1.0
+
+[compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.0.5...v1.1.0)
+
 ## v1.0.5
 
 [compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.0.4...v1.0.5)

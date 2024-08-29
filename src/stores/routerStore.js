@@ -198,7 +198,16 @@ const storeUnRegister = (id) => {
     if(routerPathStore[id.toString()]) delete routerPathStore[id.toString()];
     return true;
 };
-
+/**
+ * Synchronizes the router for a specified path with routes from the backend.
+ *
+ * @function backendSync
+ * @memberof module:RouterStore
+ * @param {Object} req - Object with path and backend.
+ * @property {string} req.path -  The path to update to.
+ * @property {function} req.backend -  Optional backend promise integration.
+ * @returns {boolean} - Returns true on successful update.
+ */
 const backendSync = (req = {}) => {
     const {path, backend} = req;
     return backend(path).then(res => {
@@ -211,7 +220,17 @@ const backendSync = (req = {}) => {
         return forceHomeOrSetNotFound('404');
     });
 }
-
+/**
+ * Updates the router to a specified path and manages state transitions.
+ * It uses internal checks to validate path existence and appropriateness of the update.
+ *
+ * @function currentUpdate
+ * @memberof module:RouterStore
+ * @param {Object} data - Object with path and backend.
+ * @property {string} data.path -  The path to update to.
+ * @property {function} [data.backend] -  Optional backend promise integration.
+ * @returns {boolean} - Returns true on successful update.
+ */
 const currentUpdate = (data = {}) => {
     const {path, backend} = data;
     if(path) {
