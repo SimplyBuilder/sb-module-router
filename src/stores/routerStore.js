@@ -129,23 +129,7 @@ const forceHomeOrSetNotFound = (path) => {
     }
     return updateStoreAndPublish({event: "not-found", path: "404",});
 };
-/**
- * Updates the router to a specified path and manages state transitions.
- * It uses internal checks to validate path existence and appropriateness of the update.
- *
- * @function currentUpdate
- * @memberof module:RouterStore
- * @param {string} path - The path to update to.
- * @returns {boolean} - Returns true on successful update.
- */
-const currentUpdate = (path) => {
-    if (path && routerPathStore[path.toString()]) {
-        const data = routerPathStore[path.toString()];
-        if(data.redirect) return pathRedirect({...data, path});
-        return updateStoreAndPublish({...data, event: "router-update", path});
-    }
-    return forceHomeOrSetNotFound(path);
-};
+
 /**
  * Retrieves the current and previous router states as an object, providing a snapshot
  * of the routing history which can be useful for debugging or conditional rendering logic in the application.
@@ -213,6 +197,32 @@ const storeRegister = (data = {}) => {
 const storeUnRegister = (id) => {
     if(routerPathStore[id.toString()]) delete routerPathStore[id.toString()];
     return true;
+};
+
+const backendSync = (req = {}) => {
+    const {path, backend} = req;
+    return backend(path).then(res => {
+        const {id, redirect} = res;
+        if (id && typeof routerPathStore[id.toString()] === "undefined" && storeRegister(res)) {
+            const data = routerPathStore[id.toString()];
+            if(redirect) return pathRedirect({...data, path: id});
+            return updateStoreAndPublish({...data, event: "router-update", path: id});
+        }
+        return forceHomeOrSetNotFound('404');
+    });
+}
+
+const currentUpdate = (data = {}) => {
+    const {path, backend} = data;
+    if(path) {
+        if(typeof backend === "function") return backendSync(data);
+        if (routerPathStore[path.toString()]) {
+            const data = routerPathStore[path.toString()];
+            if(data.redirect) return pathRedirect({...data, path});
+            return updateStoreAndPublish({...data, event: "router-update", path});
+        }
+        return forceHomeOrSetNotFound(path);
+    } else return forceHomeOrSetNotFound('404');
 };
 
 /**

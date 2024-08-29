@@ -81,6 +81,7 @@ interface RouterInitializationData {
     home?: string;
     subpath?: boolean;
     prefix?: string;
+    backend?: Function;
 }
 
 /**
