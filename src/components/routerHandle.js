@@ -35,7 +35,8 @@ const internalStore = {
     root: '/',
     prefix: undefined,
     title: "Home",
-    last: undefined
+    last: undefined,
+    backend: undefined
 };
 /**
  * Validates if a given string is not empty and is properly trimmed.
@@ -198,15 +199,17 @@ const cleanTarget = (target) => {
  */
 const storeTypeEvents = {
     "not-found": (data = {}) => {
-        const target ='404';
-        window.history.pushState({}, null,  mountHashPath(target));
-        window.document.title = "Error 404";
-        if(internalStore.last !== target) {
-            internalStore.last = target;
-            routerEvents.emit({
-                event: "not-found",
-                target: cleanTarget(target)
-            });
+        if(typeof internalStore.backend === "undefined") {
+            const target = '404';
+            window.history.pushState({}, null, mountHashPath(target));
+            window.document.title = "Error 404";
+            if (internalStore.last !== target) {
+                internalStore.last = target;
+                routerEvents.emit({
+                    event: "not-found",
+                    target: cleanTarget(target)
+                });
+            }
         }
     },
     "router-update": (data= {}) => {
@@ -244,7 +247,7 @@ const storeTypeEvents = {
 const hashRouterChange = (data = {}) => {
     const {current} = data;
     const path = getPath();
-    if(path) current(path);
+    if(path) current({path, backend: internalStore.backend});
 };
 /**
  * Synchronizes router state with changes in the hash segment of the URL, handling specific router events.
@@ -268,11 +271,12 @@ const syncRouterHash = (data = {}) => {
  * @param {object} [data={}] - The settings data.
  */
 const routerSettings = (data = {}) => {
-    const {home, prefix, title, subpath} = data;
+    const {home, prefix, title, subpath, backend} = data;
     if(isValidString(home)) internalStore.home = home.trim();
     if(isValidString(prefix)) internalStore.prefix = prefix.trim();
     if(isValidString(title)) internalStore.title = title.trim();
-    if(subpath) internalStore.root = "./";
+    if(typeof subpath === "boolean" && subpath === true) internalStore.root = "./";
+    if(typeof backend === "function") internalStore.backend = backend;
 };
 
 /**
