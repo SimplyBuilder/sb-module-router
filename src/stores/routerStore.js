@@ -209,16 +209,21 @@ const storeUnRegister = (id) => {
  * @returns {boolean} - Returns true on successful update.
  */
 const backendSync = (req = {}) => {
-    const {path, backend} = req;
-    return backend(path).then(res => {
-        const {id, redirect} = res;
-        if (id && typeof routerPathStore[id.toString()] === "undefined" && storeRegister(res)) {
-            const data = routerPathStore[id.toString()];
-            if(redirect) return pathRedirect({...data, path: id});
-            return updateStoreAndPublish({...data, event: "router-update", path: id});
-        }
-        return forceHomeOrSetNotFound('404');
-    });
+    try {
+        const {path, backend} = req;
+        return backend(path).then(res => {
+            const {id, redirect} = res;
+            if (typeof id === "undefined") return forceHomeOrSetNotFound('404');
+            if ((typeof routerPathStore[id.toString()] === "object") || (typeof routerPathStore[id.toString()] === "undefined" && storeRegister(res))) {
+                const data = routerPathStore[id.toString()];
+                if (redirect) return pathRedirect({...data, path: id});
+                return updateStoreAndPublish({...data, event: "router-update", path: id});
+            }
+        });
+    } catch (e) {
+        console.error("SimplyBuilderRouterError", "BackSync fail:", e);
+    }
+    return forceHomeOrSetNotFound('404');
 }
 /**
  * Updates the router to a specified path and manages state transitions.
