@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.1.2
+
+[compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.1.1...v1.1.2)
+
+### 🩹 Fixes
+
+- **routerStore:** Handle undefined id and backendSync failures ([6cd250a](https://github.com/SimplyBuilder/sb-module-router/commit/6cd250a))
+
+### 🏡 Chore
+
+- **package:** Update node engine and package manager versions ([e2c1ddf](https://github.com/SimplyBuilder/sb-module-router/commit/e2c1ddf))
+
+### 🤖 CI
+
+- **workflow:** Update npm workflow matrix and pnpm setup ([f72ba69](https://github.com/SimplyBuilder/sb-module-router/commit/f72ba69))
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v1.1.1
 
 [compare changes](https://github.com/SimplyBuilder/sb-module-router/compare/v1.1.0...v1.1.1)
